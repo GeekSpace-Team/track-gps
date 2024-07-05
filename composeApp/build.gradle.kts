@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
+    kotlin("plugin.serialization") version "1.9.10"
 }
 
 kotlin {
@@ -63,6 +64,8 @@ kotlin {
             implementation(libs.ktor.client.json)
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.webview)
+            implementation(libs.napier)
+            implementation(libs.ktor.client.logging)
         }
     }
 }
