@@ -17,4 +17,8 @@ class TestViewModel(private val httpClient: HttpClient): ScreenModel {
             _state.value = result.size.toString()
         }
     }
+
+    fun setData(value: String) {
+        _state.value = value
+    }
 }

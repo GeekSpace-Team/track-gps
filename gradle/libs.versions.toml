@@ -21,6 +21,7 @@ ktor = "2.3.12"
 coroutines = "1.9.0-RC"
 webview = "1.9.12"
 napier = "2.7.1"
+settings = "1.1.1"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -57,6 +58,10 @@ kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-c
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
 webview = { module = "io.github.kevinnzou:compose-webview-multiplatform", version.ref="webview" }
 napier = {module="io.github.aakira:napier", version.ref="napier"}
+setting = {module="com.russhwolf:multiplatform-settings", version.ref="settings"}
+setting-noargs = {module="com.russhwolf:multiplatform-settings-no-arg", version.ref="settings"}
+setting-coroutines = {module="com.russhwolf:multiplatform-settings-coroutines", version.ref="settings"}
+setting-serialization = {module="com.russhwolf:multiplatform-settings-serialization", version.ref="settings"}
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

@@ -66,6 +66,10 @@ kotlin {
             implementation(libs.webview)
             implementation(libs.napier)
             implementation(libs.ktor.client.logging)
+            implementation(libs.setting)
+            implementation(libs.setting.noargs)
+            implementation(libs.setting.serialization)
+            implementation(libs.setting.coroutines)
         }
     }
 }
