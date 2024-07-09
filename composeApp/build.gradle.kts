@@ -8,6 +8,10 @@ plugins {
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
     kotlin("plugin.serialization") version "1.9.10"
+    alias(libs.plugins.com.google.devtools.ksp)
+
+
+
 }
 
 kotlin {
@@ -70,9 +74,33 @@ kotlin {
             implementation(libs.setting.noargs)
             implementation(libs.setting.serialization)
             implementation(libs.setting.coroutines)
+            // Required
+            implementation(libs.lyricist)
         }
     }
 }
+
+dependencies {
+    add("kspCommonMainMetadata", libs.lyricist.processor)
+}
+
+tasks.withType<org.jetbrains.kotlin.gradle.dsl.KotlinCompile<*>>().all {
+    if(name != "kspCommonMainKotlinMetadata") {
+        dependsOn("kspCommonMainKotlinMetadata")
+    }
+}
+
+kotlin.sourceSets.commonMain {
+    kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin")
+}
+
+ksp {
+    arg("lyricist.internalVisibility", "true")
+    arg("lyricist.generateStringsProperty", "true")
+}
+
+
+
 
 android {
     namespace = "tm.gps.ytm"

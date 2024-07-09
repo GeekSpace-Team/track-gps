@@ -9,6 +9,9 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import cafe.adriel.lyricist.ProvideStrings
+import cafe.adriel.lyricist.rememberStrings
+import cafe.adriel.lyricist.strings
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.koin.getNavigatorScreenModel
 import cafe.adriel.voyager.koin.koinNavigatorScreenModel
@@ -24,6 +27,7 @@ import com.russhwolf.settings.Settings
 import com.russhwolf.settings.coroutines.getStringFlow
 import com.russhwolf.settings.coroutines.toFlowSettings
 import com.russhwolf.settings.coroutines.toSuspendSettings
+import core.locale.Locales
 import core.network.provideHttpClient
 import core.network.provideSettings
 import core.network.provideViewModel
@@ -69,26 +73,33 @@ class MainScreen: Screen {
         LaunchedEffect(true) {
             viewModel.getData()
         }
-        Column(
-            modifier = Modifier.fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Text(
-                state
-            )
-            Button(onClick = { navigator.push(AuthScreen()) }) {
-                Text("Click")
-            }
-            Button(
-                onClick = {
-                    coroutine.launch {
-                        settings.putString("test", "Salam: "+Random.nextInt())
-                    }
-                }
+        val lyricist = rememberStrings()
+        ProvideStrings(lyricist) {
+            Column(
+                modifier = Modifier.fillMaxSize(),
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Text("Saved: ${test}")
+                Text(
+                    state
+                )
+                Button(onClick = {
+                    navigator.push(AuthScreen())
+                    lyricist.languageTag = Locales.PT
+                }) {
+                    Text(strings.simple)
+                }
+                Button(
+                    onClick = {
+                        coroutine.launch {
+                            settings.putString("test", "Salam: "+Random.nextInt())
+                        }
+                    }
+                ) {
+                    Text("Saved: ${test}")
+                }
             }
         }
+
     }
 
 }
