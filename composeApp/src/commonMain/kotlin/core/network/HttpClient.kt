@@ -4,7 +4,6 @@ import TestViewModel
 import io.github.aakira.napier.DebugAntilog
 import io.github.aakira.napier.Napier
 import io.ktor.client.HttpClient
-import io.ktor.client.engine.cio.CIO
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logger
@@ -17,7 +16,7 @@ import org.koin.dsl.module
 
 val provideHttpClient = module {
     single {
-        HttpClient(CIO) {
+        HttpClient {
             expectSuccess = true
             install(ContentNegotiation) {
                 json(Json {
