@@ -2,5 +2,6 @@ package core.locale
 
 object Locales {
     const val EN = "en"
-    const val PT = "pt"
+    const val TM = "tm"
+    const val RU = "ru"
 }

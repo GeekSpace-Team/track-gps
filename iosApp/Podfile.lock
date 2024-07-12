@@ -1,0 +1,28 @@
+PODS:
+  - composeApp (1.0.0):
+    - GoogleMaps (= 7.4.0)
+  - GoogleMaps (7.4.0):
+    - GoogleMaps/Maps (= 7.4.0)
+  - GoogleMaps/Base (7.4.0)
+  - GoogleMaps/Maps (7.4.0):
+    - GoogleMaps/Base
+
+DEPENDENCIES:
+  - composeApp (from `../composeApp`)
+  - GoogleMaps (= 7.4.0)
+
+SPEC REPOS:
+  trunk:
+    - GoogleMaps
+
+EXTERNAL SOURCES:
+  composeApp:
+    :path: "../composeApp"
+
+SPEC CHECKSUMS:
+  composeApp: f99b6f68c741a7b046211b22cc9c4edcb68be633
+  GoogleMaps: 032f676450ba0779bd8ce16840690915f84e57ac
+
+PODFILE CHECKSUM: ba55b28cafb9d5524e25d1b2583130dd2009dbe8
+
+COCOAPODS: 1.15.2

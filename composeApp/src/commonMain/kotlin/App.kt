@@ -32,6 +32,7 @@ import core.network.provideHttpClient
 import core.network.provideSettings
 import core.network.provideViewModel
 import features.auth.presentation.ui.AuthScreen
+import features.main.presentation.ui.MainScreen
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -55,51 +56,9 @@ fun App() {
             modules(provideHttpClient, provideViewModel, provideSettings)
         }
     ) {
-        Navigator(MainScreen())
-    }
-}
-
-class MainScreen: Screen {
-    @OptIn(ExperimentalSettingsApi::class)
-    @Composable
-    override fun Content() {
-        val navigator = LocalNavigator.currentOrThrow
-
-        val viewModel = navigator.koinNavigatorScreenModel<TestViewModel>()
-        val settings = koinInject<Settings>()
-        val state by viewModel.state.collectAsState()
-        val test = settings.getStringOrNull("test")
-        val coroutine = rememberCoroutineScope()
-        LaunchedEffect(true) {
-            viewModel.getData()
-        }
         val lyricist = rememberStrings()
         ProvideStrings(lyricist) {
-            Column(
-                modifier = Modifier.fillMaxSize(),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Text(
-                    state
-                )
-                Button(onClick = {
-                    navigator.push(AuthScreen())
-                    lyricist.languageTag = Locales.PT
-                }) {
-                    Text(strings.simple)
-                }
-                Button(
-                    onClick = {
-                        coroutine.launch {
-                            settings.putString("test", "Salam: "+Random.nextInt())
-                        }
-                    }
-                ) {
-                    Text("Saved: ${test}")
-                }
-            }
+            Navigator(MainScreen())
         }
-
     }
-
 }

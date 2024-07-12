@@ -9,26 +9,11 @@ import cafe.adriel.lyricist.LyricistStrings
 
 @LyricistStrings(languageTag = Locales.EN, default = true)
 internal val EnStrings = Strings(
-    simple = "Hello Compose!",
-
-    annotated = buildAnnotatedString {
-        withStyle(SpanStyle(color = Color.Red)) { append("Hello ") }
-        withStyle(SpanStyle(fontWeight = FontWeight.Light)) { append("Compose!") }
-    },
-
-    parameter = { locale ->
-        "Current locale: $locale"
-    },
-
-    plural = { count ->
-        val value = when (count) {
-            0 -> "no"
-            1, 2 -> "a few"
-            in 3..10 -> "a bunch of"
-            else -> "a lot of"
-        }
-        "I have $value apples"
-    },
-
-    list = listOf("Avocado", "Pineapple", "Plum")
+    monitoring = "Monitoring",
+    map = "Map",
+    reports = "Reports",
+    notifications = "Notification",
+    geofences = "Geofences",
+    status = "Status",
+    settings = "Settings"
 )

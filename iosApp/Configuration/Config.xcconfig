@@ -1,3 +1,6 @@
 TEAM_ID=
 BUNDLE_ID=tm.gps.ytm.Gps-Tracker
 APP_NAME=Gps-Tracker
+KMP_FLAVOR = dev
+KOTLIN_FRAMEWORK_BUILD_TYPE = debug
+KOTLIN_FRAMEWORK_NAME = composeApp

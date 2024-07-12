@@ -12,3 +12,51 @@ This is a Kotlin Multiplatform project targeting Android, iOS.
 
 
 Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
+
+```kotlin
+import androidx.compose.material3.Typography
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
+import bigboss.shared.generated.resources.Res
+import bigboss.shared.generated.resources.teko_bold
+import bigboss.shared.generated.resources.teko_light
+import bigboss.shared.generated.resources.teko_medium
+import bigboss.shared.generated.resources.teko_regular
+import bigboss.shared.generated.resources.teko_semibold
+import org.jetbrains.compose.resources.ExperimentalResourceApi
+import org.jetbrains.compose.resources.Font
+
+@OptIn(ExperimentalResourceApi::class)
+@Composable
+fun TekoFontFamily() = FontFamily(
+    Font(Res.font.teko_light, weight = FontWeight.Light),
+    Font(Res.font.teko_regular, weight = FontWeight.Normal),
+    Font(Res.font.teko_medium, weight = FontWeight.Medium),
+    Font(Res.font.teko_semibold, weight = FontWeight.SemiBold),
+    Font(Res.font.teko_bold, weight = FontWeight.Bold)
+)
+
+@Composable
+fun TekoTypography() = Typography().run {
+
+    val fontFamily = TekoFontFamily()
+    copy(
+        displayLarge = displayLarge.copy(fontFamily = fontFamily),
+        displayMedium = displayMedium.copy(fontFamily = fontFamily),
+        displaySmall = displaySmall.copy(fontFamily = fontFamily),
+        headlineLarge = headlineLarge.copy(fontFamily = fontFamily),
+        headlineMedium = headlineMedium.copy(fontFamily = fontFamily),
+        headlineSmall = headlineSmall.copy(fontFamily = fontFamily),
+        titleLarge = titleLarge.copy(fontFamily = fontFamily),
+        titleMedium = titleMedium.copy(fontFamily = fontFamily),
+        titleSmall = titleSmall.copy(fontFamily = fontFamily),
+        bodyLarge = bodyLarge.copy(fontFamily =  fontFamily),
+        bodyMedium = bodyMedium.copy(fontFamily = fontFamily),
+        bodySmall = bodySmall.copy(fontFamily = fontFamily),
+        labelLarge = labelLarge.copy(fontFamily = fontFamily),
+        labelMedium = labelMedium.copy(fontFamily = fontFamily),
+        labelSmall = labelSmall.copy(fontFamily = fontFamily)
+    )
+}
+```

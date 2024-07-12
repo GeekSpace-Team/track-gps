@@ -4,9 +4,11 @@ package core.locale
 import androidx.compose.ui.text.AnnotatedString
 
 internal data class Strings(
-    val simple: String,
-    val annotated: AnnotatedString,
-    val parameter: (locale: String) -> String,
-    val plural: (count: Int) -> String,
-    val list: List<String>
+    val monitoring: String,
+    val map: String,
+    val reports: String,
+    val notifications: String,
+    val geofences: String,
+    val status: String,
+    val settings: String,
 )

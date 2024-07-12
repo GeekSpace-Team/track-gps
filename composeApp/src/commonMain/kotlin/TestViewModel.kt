@@ -13,8 +13,12 @@ class TestViewModel(private val httpClient: HttpClient): ScreenModel {
     val state = _state.asStateFlow()
     fun getData() {
         screenModelScope.launch {
-            val result: List<Post> = httpClient.get("https://jsonplaceholder.typicode.com/posts").body()
-            _state.value = result.size.toString()
+            try {
+                val result: List<Post> = httpClient.get("https://jsonplaceholder.typicode.com/posts").body()
+                _state.value = result.size.toString()
+            } catch (ex: Exception) {
+                ex.printStackTrace()
+            }
         }
     }
 

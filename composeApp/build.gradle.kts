@@ -1,6 +1,8 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.plugin.mpp.BitcodeEmbeddingMode
+import org.jetbrains.kotlin.gradle.plugin.mpp.NativeBuildType
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -8,6 +10,7 @@ plugins {
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
     kotlin("plugin.serialization") version "1.9.10"
+    kotlin("native.cocoapods")
     alias(libs.plugins.com.google.devtools.ksp)
 
 
@@ -31,6 +34,39 @@ kotlin {
             baseName = "ComposeApp"
             isStatic = true
         }
+    }
+
+    cocoapods {
+        version = "1.0.0"
+        summary = "Some description for the Shared Module"
+        homepage = "Link to the Shared Module homepage"
+        ios.deploymentTarget = "15.4"
+        podfile = project.file("../iosApp/Podfile") // why doesn't it load the cocoapods from the iosApp podfile?
+        framework {
+            baseName = "composeApp"
+            isStatic = true
+            @OptIn(ExperimentalKotlinGradlePluginApi::class)
+            transitiveExport = false // This is default.
+            // Bitcode embedding
+            embedBitcode(BitcodeEmbeddingMode.DISABLE)
+        }
+
+        // Must define the pods that are in the Podfile (Is this just the way it works?)
+        pod("GoogleMaps") {
+            version = libs.versions.pods.google.maps.get()
+            //    version = "7.4.0" // for GoogleMapsUtils 4.2.2 (doesn't build for some c-interop reason, waiting for 5.0.0)
+            extraOpts += listOf("-compiler-option", "-fmodules")
+        }
+
+        //    pod("Google-Maps-iOS-Utils") {
+        //        version = libs.versions.pods.google.mapsUtils.get() // waiting for 5.0.0 to be released!
+        //        //  source = path(project.file("../GoogleMapsUtils"))
+        //        //  packageName = "Google_Maps_iOS_Utils"
+        //    }
+
+        // Maps custom Xcode configuration to NativeBuildType
+        xcodeConfigurationToNativeBuildType["CUSTOM_DEBUG"] = NativeBuildType.DEBUG
+        xcodeConfigurationToNativeBuildType["CUSTOM_RELEASE"] = NativeBuildType.RELEASE
     }
     
     sourceSets {
