@@ -5,6 +5,8 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import gps_tracker.composeapp.generated.resources.Res
 import gps_tracker.composeapp.generated.resources.bold
+import gps_tracker.composeapp.generated.resources.extrabold
+import gps_tracker.composeapp.generated.resources.extralight
 import gps_tracker.composeapp.generated.resources.light
 import gps_tracker.composeapp.generated.resources.medium
 import gps_tracker.composeapp.generated.resources.regular
@@ -17,5 +19,7 @@ fun PoppinsFontFamily() = FontFamily(
     Font(Res.font.regular, weight = FontWeight.Normal),
     Font(Res.font.medium, weight = FontWeight.Medium),
     Font(Res.font.semibold, weight = FontWeight.SemiBold),
-    Font(Res.font.bold, weight = FontWeight.Bold)
+    Font(Res.font.bold, weight = FontWeight.Bold),
+    Font(Res.font.extrabold, weight = FontWeight.ExtraBold),
+    Font(Res.font.extralight, weight = FontWeight.ExtraLight),
 )

@@ -15,8 +15,8 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -39,10 +39,10 @@ fun BottomBar(
     modifier: Modifier = Modifier
 ) {
     Row(
-        modifier = modifier.fillMaxWidth().background(MaterialTheme.colors.surface)
+        modifier = modifier.fillMaxWidth().background(MaterialTheme.colorScheme.surface)
             .border(
                 0.2.dp,
-                color = MaterialTheme.colors.onSurface.copy(alpha = 0.5f)
+                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f)
             )
             .horizontalScroll(
                 rememberScrollState()
@@ -59,7 +59,7 @@ fun BottomBar(
 fun BottomBarItemUi(item: BottomBarItem) {
     val currentTab = LocalTabNavigator.current
     val active = item.tab == currentTab.current
-    val color = if (active) MaterialTheme.colors.primary else MaterialTheme.colors.onSurface
+    val color = if (active) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurface
     Column(
         modifier = Modifier
             .clip(RoundedCornerShape(12.dp))
@@ -80,10 +80,7 @@ fun BottomBarItemUi(item: BottomBarItem) {
         Text(
             item.tab.options.title,
             color = color, maxLines = 1, overflow = TextOverflow.Ellipsis,
-            style = MaterialTheme.typography.caption.copy(
-                fontSize = 14.sp,
-                fontFamily = PoppinsFontFamily()
-            )
+            style = MaterialTheme.typography.bodyMedium
         )
     }
 }

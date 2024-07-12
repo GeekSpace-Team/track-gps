@@ -46,6 +46,7 @@ import kotlinx.coroutines.flow.last
 import kotlinx.coroutines.launch
 import org.koin.compose.KoinApplication
 import org.koin.compose.koinInject
+import theme.AppTheme
 import kotlin.random.Random
 
 @Composable
@@ -58,7 +59,9 @@ fun App() {
     ) {
         val lyricist = rememberStrings()
         ProvideStrings(lyricist) {
-            Navigator(MainScreen())
+            AppTheme {
+                Navigator(MainScreen())
+            }
         }
     }
 }

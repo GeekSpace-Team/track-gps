@@ -6,10 +6,10 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -25,7 +25,7 @@ fun ToolBar(
     content: @Composable () -> Unit
 ) {
     Column(modifier = modifier.fillMaxWidth().background(
-        color = MaterialTheme.colors.primary
+        color = MaterialTheme.colorScheme.primary
     )) {
         content()
     }
@@ -47,7 +47,7 @@ fun SearchBar(
         },
         shape = RoundedCornerShape(2.dp),
         modifier = modifier.background(
-            color = MaterialTheme.colors.surface
+            color = MaterialTheme.colorScheme.surface
         ).padding(6.dp),
         colors = TextFieldDefaults.textFieldColors(
             backgroundColor = Color.Transparent
